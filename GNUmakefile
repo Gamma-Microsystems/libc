@@ -21,3 +21,6 @@ CRTS = ../base/lib/crt0.o ../base/lib/crti.o ../base/lib/crtn.o
 
 ../base/lib/crt%.o: arch/$(KARCH)/crt%.S
 	$(AS) -o $@ $<
+
+../base/lib/libm.so: ../util/libm.c
+	$(CC) -shared -nostdlib -fPIC -o $@ $<
