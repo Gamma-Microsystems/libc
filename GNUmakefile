@@ -3,7 +3,7 @@ LIBC_OBJS += $(patsubst %.c,%.o,$(wildcard */*.c))
 LIBC_OBJS += $(patsubst %.c,%.o,$(wildcard arch/$(KARCH)/*.c))
 KARCH = x86_64
 CC = $(KARCH)-elf-gcc
-CFLAGS := -Os -std=gnu11 -ffreestanding -Wall -Wextra -Wno-unused-parameter
+CFLAGS := -Os -std=gnu11 -ffreestanding -Wall -Wextra -Wno-unused-parameter -I../base/usr/include
 AR = $(KARCH)-elf-ar
 AS = $(KARCH)-elf-as
 CRTS = ../base/lib/crt0.o ../base/lib/crti.o ../base/lib/crtn.o
