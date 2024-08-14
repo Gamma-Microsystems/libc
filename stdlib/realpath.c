@@ -5,9 +5,9 @@
 #include <unistd.h>
 #include <errno.h>
 
-#ifndef __toaru__
+#ifndef __sirius__
 #undef realpath
-#define realpath _realpath_toaru
+#define realpath _realpath_sirius
 #endif
 
 #define SYMLINK_MAX 5
@@ -25,7 +25,7 @@ static void _remove_last(char * out) {
 }
 
 /**
- * This is accurate to how we handle paths in ToaruOS.
+ * This is accurate to how we handle paths in SiriusOS.
  * It's not correct for real symbolic link handling,
  * so it needs some work for that.
  */
@@ -85,7 +85,7 @@ char *realpath(const char *path, char *resolved_path) {
 	return resolved_path;
 }
 
-#ifndef __toaru__
+#ifndef __sirius__
 int main(int argc, char * argv[]) {
 	char tmp[PATH_MAX+1];
 

@@ -3,7 +3,7 @@
 #include <string.h>
 #include <stdio.h>
 
-#include <toaru/decodeutf8.h>
+#include <sirius/decodeutf8.h>
 
 static int to_eight(uint32_t codepoint, char * out) {
 	memset(out, 0x00, 7);
@@ -83,4 +83,3 @@ size_t wcstombs(char * dest, const wchar_t *src, size_t n) {
 
 	return count;
 }
-
