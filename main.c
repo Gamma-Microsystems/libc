@@ -42,7 +42,7 @@ static void _libc_init(void) {
 	__libc_init_called = 1;
 	__make_tls();
 	__stdio_init_buffers();
-	__libc_is_multicore = sysfunc(TOARU_SYS_FUNC_NPROC, NULL) > 1;
+	__libc_is_multicore = sysfunc(SIRIUS_SYS_FUNC_NPROC, NULL) > 1;
 
 	unsigned int x = 0;
 	unsigned int nulls = 0;
@@ -118,4 +118,3 @@ void pre_main(int argc, char * argv[], char ** envp, int (*main)(int,char**)) {
 	_init();
 	exit(main(argc, argv));
 }
-
