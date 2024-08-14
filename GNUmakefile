@@ -8,7 +8,9 @@ AR = $(KARCH)-elf-ar
 CRTS = ../base/lib/crt0.o ../base/lib/crti.o ../base/lib/crtn.o
 
 ../base/lib/libc.a: $(LIBC_OBJS) $(CRTS)
+	@echo -e 'AR'
 	@$(AR) cr $@ $(LIBC_OBJS)
 
 ../base/lib/libc.so: $(LIBC_OBJS) | $(CRTS)
-	$(CC) -nodefaultlibs -shared -fPIC -o $@ $^ -lgcc
+	@echo -e 'CC'
+	@$(CC) -nodefaultlibs -shared -fPIC -o $@ $^ -lgcc
