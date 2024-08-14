@@ -60,7 +60,7 @@ void __make_tls(void) {
 	/* self-pointer start? */
 	char ** tlsSelf = (char **)(tlsSpace);
 	*tlsSelf = (char*)tlsSelf;
-	sysfunc(TOARU_SYS_FUNC_SETGSBASE, (char*[]){(char*)tlsSelf});
+	sysfunc(SIRIUS_SYS_FUNC_SETGSBASE, (char*[]){(char*)tlsSelf});
 }
 
 void pthread_exit(void * value) {
@@ -73,7 +73,7 @@ void * __thread_start(void * pthreadbase) {
 	this->tid = gettid();
 	char ** tlsbase = (char**)((char*)this + 4096);
 	*tlsbase = (char*)tlsbase;
-	sysfunc(TOARU_SYS_FUNC_SETGSBASE, (char*[]){(char*)tlsbase});
+	sysfunc(SIRIUS_SYS_FUNC_SETGSBASE, (char*[]){(char*)tlsbase});
 	pthread_exit(this->entry(this->arg));
 	return NULL;
 }
