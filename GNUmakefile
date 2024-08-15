@@ -16,6 +16,10 @@ GCC_SHARED = ../base/usr/lib/libgcc_s.so.1 ../base/usr/lib/libgcc_s.so
 .PHONY: all
 all: $(BASE)/lib/crt%.o ../base/lib/libc.a ../base/lib/libc.so ../base/lib/libm.so
 
+$(BASE)/lib/crt%.o: arch/$(KARCH)/crt%.S
+        @echo -e 'AS' $@
+        @$(AS) -o $@ $<
+
 %.o: %.c ../base/usr/include/syscall.h
 	@echo -e 'CC' $@
 	@$(CC) $(CFLAGS) -fPIC -c -o $@ $<
