@@ -19,9 +19,11 @@ GCC_SHARED = ../base/usr/lib/libgcc_s.so.1 ../base/usr/lib/libgcc_s.so
 
 all:
 	@echo "Compiling libc..."
-	@$(MAKE) --no-print-directory libc.a
+	@$(MAKE) --no-print-directory ../base/lib/libc.a
 	@echo "Building libc.so..."
-	@$(MAKE) --no-print-directory libc.so
+	@$(MAKE) --no-print-directory ../base/lib/libc.so
+	@echo "Building libm.so"
+	@$(MAKE) --no-print-directory ../base/lib/libm.so
 	@echo "Installing..."
 	@cp crt*.o libc.* ../base/lib 
 
