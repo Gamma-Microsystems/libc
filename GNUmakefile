@@ -14,33 +14,33 @@ LC = ../base/lib/libc.so $(GCC_SHARED)
 GCC_SHARED = ../base/usr/lib/libgcc_s.so.1 ../base/usr/lib/libgcc_s.so
 
 %.o: %.c ../base/usr/include/syscall.h
-        @echo -e 'CC' $@
-        @$(CC) $(CFLAGS) -fPIC -c -o $@ $<
+	@echo -e 'CC' $@
+	@$(CC) $(CFLAGS) -fPIC -c -o $@ $<
 
 all:
-        @echo "Compiling libc..."
-        @$(MAKE) --no-print-directory libc.a
-        @echo "Building libc.so..."
-        @$(MAKE) --no-print-directory libc.so
-        @echo "Installing..."
+	@echo "Compiling libc..."
+	@$(MAKE) --no-print-directory libc.a
+	@echo "Building libc.so..."
+	@$(MAKE) --no-print-directory libc.so
+	@echo "Installing..."
 	@cp crt*.o libc.* ../base/lib 
 
 ../base/lib/libc.a: $(LIBC_OBJS) $(CRTS)
-        @echo -e 'AR' $@
-        @$(AR) cr $@ $(LIBC_OBJS)
+	@echo -e 'AR' $@
+	@$(AR) cr $@ $(LIBC_OBJS)
 
 ../base/lib/libc.so: $(LIBC_OBJS) | $(CRTS)
-        @echo -e 'CC' $@
-        @$(CC) -nodefaultlibs -shared -fPIC -o $@ $^ -lgcc
+	@echo -e 'CC' $@
+	@$(CC) -nodefaultlibs -shared -fPIC -o $@ $^ -lgcc
 
 ../base/lib/crt%.o: arch/$(KARCH)/crt%.S
-        @echo -e 'AS' $@
-        @$(AS) -o $@ $<
+	@echo -e 'AS' $@
+	@$(AS) -o $@ $<
 
 ../base/lib/libm.so: ../util/libm.c
-        @echo -e 'CC' $@
-        @$(CC) -shared -nostdlib -fPIC -o $@ $<
+	@echo -e 'CC' $@
+	@$(CC) -shared -nostdlib -fPIC -o $@ $<
 
 .PHONY: clean
 clean:
-        @rm -rf *.o */*.o *.so *.a ../base/lib/*.a ../base/lib/*.o ../base/lib/*.so
+	@rm -rf *.o */*.o *.so *.a ../base/lib/*.a ../base/lib/*.o ../base/lib/*.so
