@@ -12,9 +12,9 @@ GCC_SHARED = ../base/usr/lib/libgcc_s.so.1 ../base/usr/lib/libgcc_s.so
 
 .PHONY: all
 all:
-	%.o: %.c ../base/usr/include/syscall.h
-		@echo -e 'CC' $@
-		@$(CC) $(CFLAGS) -fPIC -c -o $@ $<
+	#%.o: %.c ../base/usr/include/syscall.h
+	#	@echo -e 'CC' $@
+	#	@$(CC) $(CFLAGS) -fPIC -c -o $@ $<
 
 	../base/lib/libc.a: $(LIBC_OBJS) $(CRTS)
 		@echo -e 'AR' $@
