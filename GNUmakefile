@@ -13,6 +13,9 @@ CRTS = ../base/lib/crt0.o ../base/lib/crti.o ../base/lib/crtn.o
 LC = ../base/lib/libc.so $(GCC_SHARED)
 GCC_SHARED = ../base/usr/lib/libgcc_s.so.1 ../base/usr/lib/libgcc_s.so
 
+.PHONY: all
+all: ../base/lib/libc.a ../base/lib/libc.so ../base/lib/libm.so
+
 %.o: %.c ../base/usr/include/syscall.h
 	@echo -e 'CC' $@
 	@$(CC) $(CFLAGS) -fPIC -c -o $@ $<
@@ -36,6 +39,3 @@ GCC_SHARED = ../base/usr/lib/libgcc_s.so.1 ../base/usr/lib/libgcc_s.so
 .PHONY: clean
 clean:
 	@rm -rf *.o */*.o *.so *.a ../base/lib/*.a ../base/lib/*.o ../base/lib/*.so
-
-.PHONY: all
-all: ../base/lib/libc.a ../base/lib/libc.so
