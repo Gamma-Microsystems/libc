@@ -17,16 +17,6 @@ GCC_SHARED = ../base/usr/lib/libgcc_s.so.1 ../base/usr/lib/libgcc_s.so
 	@echo -e 'CC' $@
 	@$(CC) $(CFLAGS) -fPIC -c -o $@ $<
 
-all:
-	@echo "Compiling libc..."
-	@$(MAKE) --no-print-directory ../base/lib/libc.a
-	@echo "Building libc.so..."
-	@$(MAKE) --no-print-directory ../base/lib/libc.so
-	@echo "Building libm.so"
-	@$(MAKE) --no-print-directory ../base/lib/libm.so
-	@echo "Installing..."
-	@cp crt*.o libc.* ../base/lib 
-
 ../base/lib/libc.a: $(LIBC_OBJS) $(CRTS)
 	@echo -e 'AR' $@
 	@$(AR) cr $@ $(LIBC_OBJS)
@@ -46,3 +36,6 @@ all:
 .PHONY: clean
 clean:
 	@rm -rf *.o */*.o *.so *.a ../base/lib/*.a ../base/lib/*.o ../base/lib/*.so
+
+.PHONY: all
+all: ../base/lib/libc.a ../base/lib/libc.so
