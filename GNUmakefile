@@ -10,27 +10,25 @@ CRTS = ../base/lib/crt0.o ../base/lib/crti.o ../base/lib/crtn.o
 LC = ../base/lib/libc.so $(GCC_SHARED)
 GCC_SHARED = ../base/usr/lib/libgcc_s.so.1 ../base/usr/lib/libgcc_s.so
 
-.PHONY: all
-all:
-	#%.o: %.c ../base/usr/include/syscall.h
-	#	@echo -e 'CC' $@
-	#	@$(CC) $(CFLAGS) -fPIC -c -o $@ $<
+%.o: %.c ../base/usr/include/syscall.h
+	@echo -e 'CC' $@
+	@$(CC) $(CFLAGS) -fPIC -c -o $@ $<
 
-	../base/lib/libc.a: $(LIBC_OBJS) $(CRTS)
-		@echo -e 'AR' $@
-		@$(AR) cr $@ $(LIBC_OBJS)
+../base/lib/libc.a: $(LIBC_OBJS) $(CRTS)
+	@echo -e 'AR' $@
+	@$(AR) cr $@ $(LIBC_OBJS)
 
-	../base/lib/libc.so: $(LIBC_OBJS) | $(CRTS)
-		@echo -e 'CC' $@
-		@$(CC) -nodefaultlibs -shared -fPIC -o $@ $^ -lgcc
+../base/lib/libc.so: $(LIBC_OBJS) | $(CRTS)
+	@echo -e 'CC' $@
+	@$(CC) -nodefaultlibs -shared -fPIC -o $@ $^ -lgcc
 
-	../base/lib/crt%.o: arch/$(KARCH)/crt%.S
-		@echo -e 'AS' $@
-		@$(AS) -o $@ $<
+../base/lib/crt%.o: arch/$(KARCH)/crt%.S
+	@echo -e 'AS' $@
+	@$(AS) -o $@ $<
 
-	../base/lib/libm.so: ../util/libm.c
-		@echo -e 'CC' $@
-		@$(CC) -shared -nostdlib -fPIC -o $@ $<
+../base/lib/libm.so: ../util/libm.c
+	@echo -e 'CC' $@
+	@$(CC) -shared -nostdlib -fPIC -o $@ $<
 
 .PHONY: clean
 clean:
