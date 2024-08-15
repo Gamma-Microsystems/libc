@@ -14,7 +14,7 @@ LC = ../base/lib/libc.so $(GCC_SHARED)
 GCC_SHARED = ../base/usr/lib/libgcc_s.so.1 ../base/usr/lib/libgcc_s.so
 
 .PHONY: all
-all: $(BASE)/lib/crt%.o ../base/lib/libc.a ../base/lib/libc.so ../base/lib/libm.so
+all: ../base/lib/libc.a ../base/lib/libc.so ../base/lib/libm.so
 
 $(BASE)/lib/crt%.o: arch/$(KARCH)/crt%.S
 	@echo -e 'AS' $@
